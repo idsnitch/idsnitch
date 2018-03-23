@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block merchandise %}
+    class="active"
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Update Merchandise</h4>
+                    </div>
+                    <div class="card-content">
+                        {{ form_start(merchandiseForm) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Brand</label>
+                                    {{ form_row(merchandiseForm.organization,{'attr':{'class':'form-control select2'}}) }}
+                                    <span class="material-input"></span></div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Distributor</label>
+                                    {{ form_row(merchandiseForm.distributor,{'attr':{'class':'form-control'}}) }}
+                                    <span class="material-input"></span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Serial Number</label><br/><br/>
+                                    {{ form_row(merchandiseForm.serialNumber,{'attr':{'class':'form-control'}}) }}
+                                    <span class="material-input"></span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Description</label><br/><br/>
+                                    {{ form_row(merchandiseForm.productDescription,{'attr':{'class':'form-control'}}) }}
+                                    <span class="material-input"></span></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary pull-right">Update Merchandise</button>
+                        <div class="clearfix"></div>
+                        {{ form_end(merchandiseForm) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Material Dashboard javascript methods -->
+    <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('assets/js/demo.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

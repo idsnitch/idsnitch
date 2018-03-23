@@ -1,0 +1,174 @@
+<html lang="en" class="perfect-scrollbar-on"><head>
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}">
+    <title>Identity Snitch</title>
+    <!-- Bootstrap core CSS     -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!--  Material Dashboard CSS    -->
+    <link href="{{ asset('assets/css/material-dashboardv1.css') }}" rel="stylesheet">
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{ asset('assets/css/demo2.css') }}" rel="stylesheet">
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<body class="">
+
+<div class="wrapper wrapper-full-page" >
+    <div class="full-page login-page"  filter-color="black" data-image="{{ asset('assets/img/login.jpeg') }}">
+        <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                        {{ form_start(form,{'attr': {'id': 'checkId'}}) }}
+                                <div class="card card-login">
+                                <div class="card-header text-center" data-background-color="rose">
+                                    <h4 class="card-title">IDENTITY SNITCH</h4>
+
+                                </div>
+
+                                <div class="card-content">
+                                    <p style="text-align:center;">To verify a Professional's Identity, Enter their <br/><strong>ID Number</strong> below and click the Check button. </p>
+
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="material-icons">lock_outline</i>
+                                            </span>
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">ID Number</label>
+                                            <input type="text" name="idNumber" id="idNumber" class="form-control">
+                                            <span class="material-input"></span></div>
+                                    </div>
+                                </div>
+                                    <div class="alert alert-danger" id="alert" style="display: none">
+                                    </div>
+
+                                    <div class="footer" style="padding-left:10px">
+                                    <button style="display: inline-block;width:30%;float:left;min-width:150px" type="submit" class="btn btn-primary btn-rose btn-wd btn-lg"><span id="check" class="fa fa-cog"></span> <span id="buttonLabel"> Check</span><div class="ripple-container"></div></button>
+                                        &nbsp;<a style="display: inline-block;width:30%;min-width:150px" href="{{ path('homepage') }}"> <button type="button" class="btn btn-primary btn-rose btn-wd btn-lg"><span id="buttonLabel"> Cancel</span><div class="ripple-container"></div></button></a>
+
+                                    </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+
+
+            </div>
+        </footer>
+        <div class="full-page-background" style="background-image: url(../../assets/img/login.jpeg) "></div></div>
+</div>
+
+
+
+<!--   Core JS Files   -->
+<script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/material.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
+<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<!-- Library for adding dinamically elements -->
+<script src="{{ asset('assets/js/arrive.min.js') }}" type="text/javascript"></script>
+<!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
+<script src="{{ asset('assets/js/chartist.min.js') }}"></script>
+<!-- Sliders Plugin, full documentation here: https://refreshless.com/nouislider/ -->
+<script src="{{ asset('assets/js/nouislider.min.js') }}"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('assets/js/demo2.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        demo.checkFullPageBackgroundImage();
+
+        setTimeout(function() {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700)
+    });
+</script>
+{% block javascripts %}
+    <script type="text/javascript">
+        // prepare the form when the DOM is ready
+        $(document).ready(function() {
+
+            // bind to the form's submit event
+            $('#checkId').submit(function(e) {
+                var ajaxRequest;
+
+                //Prevent Normal Submit
+                e.preventDefault();
+
+                $(".messages").fadeOut("slow");
+
+                $(this).find('.fa-cog')
+                    .removeClass('fa-cog')
+                    .addClass('fa-spinner')
+                    .addClass('fa-spin');
+
+
+                var button = document.getElementById('buttonLabel');
+                button.innerText = button.textContent = 'Checking...';
+
+                $(this).find('.fa-check')
+                    .removeClass('fa-check')
+                    .addClass('fa-spinner')
+                    .addClass('fa-spin');
+
+                var form = document.getElementById("checkId");
+                /*var elements = form.elements;
+                for (var i = 0, len = elements.length; i < len; ++i) {
+                    elements[i].readOnly = true;
+                }*/
+                // get form values
+                var values = $(this).serialize();
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    data: values,
+                    method: 'POST'
+                }).done(function (company) {
+                    $("#add-t-cart")
+                        .removeClass('fa-spinner')
+                        .removeClass('fa-spin')
+                        .addClass('fa-check');
+
+                    window.location.href=company;
+
+                }).fail(function () {
+
+                    var button = document.getElementById('buttonLabel');
+                    button.innerText = button.textContent = 'Not Found...';
+
+                    $("#check")
+                        .removeClass('fa-spinner')
+                        .removeClass('fa-spin')
+                        .addClass('fa-cog');
+
+                    $(".alert-danger").fadeIn("slow");
+
+                    var alert = document.getElementById('alert');
+                    alert.innerText = 'No results found. Check the ID number and try again.';
+                    button.innerText = button.textContent = 'Check';
+
+                })
+
+
+
+            });
+
+        });
+
+
+    </script>
+{% endblock %}
+
+</body></html>

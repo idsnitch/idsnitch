@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block business %}
+    class="active"
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Persons</h4>
+                        <p class="category">List of Certified Persons</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover material-datatables" cellspacing="0" width="100%" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Business Number</th>
+                                <th>Country</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for business in businesses %}
+                            <tr>
+                                <td class="text-primary"><a href="{{ path('edit-business', {'id': business.id}) }}">{{ business.businessName }}</a> </td>
+                                <td>{{ business.businessNumber }}</td>
+                                <td>{{ business.country }}</td>
+                                <td class="text-primary">
+                                    <a title="Manage Profile" href="{{ path('new-license', {'id': business.id}) }}" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">person_outline</i></a>
+
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr><td class="text-primary">
+                                    No Businesses on Record
+
+                                </td> </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

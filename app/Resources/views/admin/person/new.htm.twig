@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% block person %}
+    class="active"
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">New Person</h4>
+                        <p class="category">Create a New Person</p>
+                    </div>
+                    <div class="card-content">
+                        {{ form_start(personForm) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">ID Number</label>
+                                        {{ form_row(personForm.idNumber,{'attr':{'class':'form-control'}}) }}
+                                        <span class="material-input"></span></div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">Fist Name</label>
+                                        {{ form_row(personForm.firstName,{'attr':{'class':'form-control'}}) }}
+                                        <span class="material-input"></span></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">Middle Name</label>
+                                        {{ form_row(personForm.middleName,{'attr':{'class':'form-control'}}) }}
+                                        <span class="material-input"></span></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">Last Name</label>
+                                        {{ form_row(personForm.lastName,{'attr':{'class':'form-control'}}) }}
+                                        <span class="material-input"></span></div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating is-empty">
+                                    <label class="control-label">Country</label><br/><br/>
+                                    {{ form_row(personForm.country,{'attr':{'class':'form-control select2'}}) }}
+                                    <span class="material-input"></span></div>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label">Profile Image</label><br/><br/>
+
+                                        <span class="material-input"></span></div>
+                                    {{ form_row(personForm.imageFile) }}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary pull-right">Create Profile</button>
+                            <div class="clearfix"></div>
+                        {{ form_end(personForm) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+<!-- Material Dashboard javascript methods -->
+<script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('assets/js/demo.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

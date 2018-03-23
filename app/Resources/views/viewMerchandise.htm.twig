@@ -1,0 +1,111 @@
+{% extends 'based.html.twig' %}
+{% block body %}
+    <style>
+        label.control-label {
+            font-size: 12px;
+            line-height: 1.0714285718;
+            color: #AAAAAA;
+            font-weight: 400;
+            margin: 16px 0 0 0;
+        }
+        .checkmark {
+            display:inline-block;
+            width: 22px;
+            height:22px;
+            -ms-transform: rotate(45deg); /* IE 9 */
+            -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+            transform: rotate(45deg);
+        }
+
+        .checkmark_circle {
+            position: absolute;
+            width:22px;
+            height:22px;
+            background-color: green;
+            border-radius:11px;
+            left:0;
+            top:0;
+        }
+
+        .checkmark_stem {
+            position: absolute;
+            width:3px;
+            height:9px;
+            background-color:#fff;
+            left:11px;
+            top:6px;
+        }
+
+        .checkmark_kick {
+            position: absolute;
+            width:3px;
+            height:3px;
+            background-color:#fff;
+            left:8px;
+            top:12px;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                                                           <span class="checkmark">
+                                    <div class="checkmark_circle"></div>
+                                    <div class="checkmark_stem"></div>
+                                    <div class="checkmark_kick"></div>
+                                </span>
+                            <div class="alert alert-success"> <strong>Genuine Product</strong></div>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h4 class="card-title">{{ merchandise.organization }}</h4>
+                        <div class="card-content">
+                            <table style="width: 400px">
+                                <tr>
+                                    <td><label class="control-label"><strong>Serial Number</strong></label></td>
+                                    <td><label class="control-label"><strong>{{ merchandise.serialNumber }}</strong></label></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label class="control-label"> <strong>Brand</strong></label></td>
+                                    <td><label class="control-label"> <strong>{{ merchandise.organization }}</strong></label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label"><strong>Product Info</strong></label></td>
+                                    <td><label class="control-label"><strong>{{ merchandise.productDescription }}</strong></label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label"><strong>Distributor Info </strong></label></td>
+                                    <td><label class="control-label"><strong>{{ merchandise.distributor }}</strong></label></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Material Dashboard javascript methods -->
+    <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('assets/js/demo.js') }}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

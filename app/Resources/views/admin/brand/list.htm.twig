@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block brand %}
+    class="active"
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Brands</h4>
+                        <p class="category">List of Brands</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover material-datatables" cellspacing="0" width="100%" style="width:100%">
+                            <thead class="text-primary">
+                            <tr>
+                                <th>Brand</th>
+                                <th>Address</th>
+                                <th>Country</th>
+                                <th>Actions</th>
+                            </tr></thead>
+                            <tbody>
+                           {% for org in organizations %}
+                            <tr>
+                                <td>{{ org.organizationName }}</td>
+                                <td>{{ org.organizationAddress }}</td>
+                                <td>{{ org.country }}</td>
+                                <td><a href="{{ path('edit-organization', {'id': org.id}) }}" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">dvr</i><div class="ripple-container"></div></a></td>
+                            </tr>
+                           {% else %}
+                            <tr>
+                                <td>No Brands on Record</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

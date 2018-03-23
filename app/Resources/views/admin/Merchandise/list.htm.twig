@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block merchandise %}
+    class="active"
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Merchandise</h4>
+                        <p class="category">Merchandise List</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover material-datatables" cellspacing="0" width="100%" style="width:100%">
+                            <thead>
+                            <tr>
+
+                                <th>Serial Number</th>
+                                <th>Description</th>
+                                <th>Distributor</th>
+                                <th>Brand</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for merc in merchandise %}
+                            <tr>
+                                <td class="text-primary"><a href="">{{ merc.serialNumber }}</a> </td>
+                                <td>{{ merc.productDescription }}</td>
+                                <td>{{ merc.distributor }}</td>
+                                <td>{{ merc.organization }}
+                                </td>
+                                <td class="text-primary">
+                                    <a title="Manage Profile" href="{{ path('edit-merchandise', {'id': merc.id}) }}" class="btn btn-simple btn-warning btn-icon edit"><i class="material-icons">school</i></a>
+
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr><td class="text-primary">
+                                    No Merchandise on Record
+
+                                </td> </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
